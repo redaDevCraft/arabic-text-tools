@@ -34,7 +34,7 @@
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs && npm run build:types",
     "build:esm": "tsup src/index.ts --format esm --dts --out-dir dist/esm",
-    "build:cjs": "tsup src/index.ts --format cjs --dts --out-dir dist/cjs --out-extension=.cjs",
+    "build:cjs": "tsup src/index.ts --format cjs --dts --out-dir dist/cjs",
     "build:types": "tsc -p tsconfig.types.json --emitDeclarationOnly",
     "test": "vitest run",
     "lint": "tsc -p tsconfig.json --noEmit",
