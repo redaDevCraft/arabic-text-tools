@@ -1,6 +1,6 @@
 {
   "name": "arabic-text-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dependency-light Arabic text normalization and developer utilities for TypeScript.",
   "license": "MIT",
   "type": "module",
