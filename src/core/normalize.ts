@@ -1,4 +1,4 @@
-import { ARABIC_DIACRITICS, BIDI_MARKS, TATWEEL, ZERO_WIDTH } from './constants';
+import { ARABIC_DIACRITICS, ARABIC_SEARCH_SAFE_CHARS, BIDI_MARKS, TATWEEL, ZERO_WIDTH } from './constants';
 import type { NormalizeArabicOptions } from '../types';
 
 const DEFAULTS: Required<NormalizeArabicOptions> = {
@@ -17,7 +17,7 @@ export function stripDiacritics(text: string): string {
   return text.replace(ARABIC_DIACRITICS, '');
 }
 
-function normalizeChars(text: string, options: Required<NormalizeArabicOptions>): string {
+export function normalizeArabicLetters(text: string, options: Required<NormalizeArabicOptions>): string {
   let out = text;
   if (options.removeZeroWidth) out = out.replace(ZERO_WIDTH, '');
   if (options.removeBidiMarks) out = out.replace(BIDI_MARKS, '');
@@ -32,16 +32,21 @@ function normalizeChars(text: string, options: Required<NormalizeArabicOptions>)
     .replace(/[\u0624]/g, 'و')
     .replace(/[\u0626]/g, 'ي')
     .replace(/[\u0621]/g, 'ء');
-  if (options.collapseWhitespace) out = out.replace(/\s+/g, ' ').trim();
   return out;
 }
 
+function collapseWhitespace(text: string): string {
+  return text.replace(/\s+/g, ' ').trim();
+}
+
 export function normalizeArabic(text: string, options: NormalizeArabicOptions = {}): string {
-  return normalizeChars(text, { ...DEFAULTS, ...options });
+  const merged = { ...DEFAULTS, ...options };
+  const normalized = normalizeArabicLetters(text, merged);
+  return merged.collapseWhitespace ? collapseWhitespace(normalized) : normalized;
 }
 
 export function normalizeForSearch(text: string, options: NormalizeArabicOptions = {}): string {
-  return normalizeArabic(text, {
+  const normalized = normalizeArabic(text, {
     removeDiacritics: true,
     removeTatweel: true,
     normalizeAlif: true,
@@ -53,4 +58,5 @@ export function normalizeForSearch(text: string, options: NormalizeArabicOptions
     collapseWhitespace: true,
     ...options,
   });
+  return normalized.replace(ARABIC_SEARCH_SAFE_CHARS, '');
 }

@@ -20,10 +20,10 @@ export function transliterateArabic(text: string, options: TransliterateArabicOp
   });
   const sep = options.separator ?? '';
   const parts = Array.from(normalized).map((ch) => {
-    if (/\\d/.test(ch)) return options.preserveDigits ? ch : toLatinDigits(ch);
+    if (/\d/.test(ch)) return options.preserveDigits ? ch : toLatinDigits(ch);
     if (ch === 'ة') return options.mapTaMarbuta === 't' ? 't' : options.mapTaMarbuta === 'ah' ? 'ah' : 'a';
     if (ch === 'ء') return options.mapHamza === 'h' ? 'h' : "'";
     return map[ch] ?? ch;
   });
-  return parts.join(sep).replace(/\\s+/g, ' ').trim();
+  return parts.join(sep).replace(/\s+/g, ' ').trim();
 }

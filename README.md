@@ -1,48 +1,65 @@
 # arabic-text-tools
 
-Dependency-light TypeScript utilities for Arabic text normalization, digit conversion, direction detection, and lightweight transliteration.
+[![npm version](https://img.shields.io/npm/v/arabic-text-tools)](https://www.npmjs.com/package/arabic-text-tools)
+[![CI](https://github.com/redaDevCraft/arabic-text-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/redaDevCraft/arabic-text-tools/actions/workflows/ci.yml)
 
-## What it solves
-Arabic apps often need consistent text comparison, better search matching, digit conversion, and safer handling of RTL strings. This package focuses on practical developer needs with pure functions and stable defaults.
+A dependency-light TypeScript library for Arabic text normalization, search matching, digit conversion, direction detection, and limited transliteration.
 
-## v1 features
-- `normalizeArabic`
-- `stripDiacritics`
-- `normalizeForSearch`
-- `detectDirection`
-- `toArabicDigits`
-- `toLatinDigits`
-- `transliterateArabic` (limited, documented)
+## Why this exists
+Arabic apps often need consistent matching across diacritics, hamza forms, tatweel, bidi marks, and Arabic-Indic digits. `arabic-text-tools` gives you a small, pure-function toolkit for those repeated problems without pulling in heavy dependencies.
 
 ## Install
 ```bash
 npm install arabic-text-tools
 ```
 
-## Quick start
+## Quick example
 ```ts
-import { normalizeForSearch, toArabicDigits } from 'arabic-text-tools';
+import { normalizeForSearch, detectDirection, toArabicDigits } from 'arabic-text-tools';
 
 normalizeForSearch('السَّلَامُ عَلَيْكُمْ');
 // "السلام عليكم"
+
+detectDirection('مرحبا');
+// "rtl"
 
 toArabicDigits(2025);
 // "٢٠٢٥"
 ```
 
+## v1 features
+- Arabic normalization for display-safe cleanup.
+- Search normalization for comparisons and indexing.
+- Arabic-Indic and Persian digit conversion.
+- Direction detection for RTL/LTR handling.
+- Limited transliteration for common developer use cases.
+
+## API
+- `normalizeArabic(text, options)` — normalize Arabic text with configurable cleanup.
+- `stripDiacritics(text)` — remove harakat and Quranic/Arabic diacritics.
+- `normalizeForSearch(text, options)` — aggressive normalization for matching.
+- `detectDirection(text)` — detect `rtl` or `ltr`.
+- `toArabicDigits(value)` — convert 0–9 to Arabic-Indic digits.
+- `toLatinDigits(value)` — convert Arabic-Indic or Persian digits to Latin digits.
+- `transliterateArabic(text, options)` — limited transliteration, intentionally conservative.
+
 ## Normalization philosophy
-This library distinguishes between display-safe normalization and search-safe normalization. Search normalization is more aggressive and may reduce reversibility, so use it for indexing and matching rather than storage.
+There is no single universal Arabic normalization rule for every app. This package separates display-safe cleanup from search-safe normalization so you can choose the right behavior for your use case.
 
 ## Caveats
 - Transliteration is intentionally limited in v1.
-- Some Arabic letter mappings are configurable because there is no single universal transliteration standard.
-- Use `normalizeForSearch` carefully when exact original text must be preserved.
+- `normalizeForSearch` may reduce reversibility.
+- Arabic normalization rules can vary by region and domain, so the options stay explicit.
 
-## Build and publish
-1. Run tests and lint.
-2. Build ESM, CJS, and types.
-3. Verify package exports.
-4. Publish under semantic versioning.
+## Development
+```bash
+npm install
+npm test
+npm run build
+```
 
-## API
-See inline TypeScript types in `src/types/index.ts`.
+## Release
+Use conventional commits and release from `main` after CI passes.
+
+## License
+MIT — see [LICENSE](./LICENSE).

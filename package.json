@@ -4,6 +4,14 @@
   "description": "Dependency-light Arabic text normalization and developer utilities for TypeScript.",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redaDevCraft/arabic-text-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/redaDevCraft/arabic-text-tools/issues"
+  },
+  "homepage": "https://github.com/redaDevCraft/arabic-text-tools#readme",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -21,7 +29,8 @@
     "build:cjs": "tsup src/index.ts --format cjs --dts false --out-dir dist/cjs --out-extension .cjs",
     "build:types": "tsc -p tsconfig.types.json --emitDeclarationOnly",
     "test": "vitest run",
-    "lint": "tsc -p tsconfig.json --noEmit"
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build && npm test"
   },
   "devDependencies": {
     "tsup": "^8.0.2",
