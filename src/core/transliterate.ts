@@ -3,7 +3,39 @@ import { normalizeArabic } from './normalize';
 import type { TransliterateArabicOptions } from '../types';
 
 const map: Record<string, string> = {
-  ا: 'a', ب: 'b', ت: 't', ث: 'th', ج: 'j', ح: 'h', خ: 'kh', د: 'd', ذ: 'dh', ر: 'r', ز: 'z', س: 's', ش: 'sh', ص: 's', ض: 'd', ط: 't', ظ: 'z', ع: 'a', غ: 'gh', ف: 'f', ق: 'q', ك: 'k', ل: 'l', م: 'm', ن: 'n', ه: 'h', و: 'w', ي: 'y', ء: "'", ؤ: 'w', ئ: 'y', ة: 'a', ى: 'a', أ: 'a', إ: 'i', آ: 'aa'
+  ا: 'a',
+  ب: 'b',
+  ت: 't',
+  ث: 'th',
+  ج: 'j',
+  ح: 'h',
+  خ: 'kh',
+  د: 'd',
+  ذ: 'dh',
+  ر: 'r',
+  ز: 'z',
+  س: 's',
+  ش: 'sh',
+  ص: 's',
+  ض: 'd',
+  ط: 't',
+  ظ: 'z',
+  ع: 'a',
+  غ: 'gh',
+  ف: 'f',
+  ق: 'q',
+  ك: 'k',
+  ل: 'l',
+  م: 'm',
+  ن: 'n',
+  ه: 'h',
+  و: 'w',
+  ي: 'y',
+  ء: "'",
+  ؤ: 'w',
+  ئ: 'y',
+  ة: 'a',
+  ى: 'a',
 };
 
 export function transliterateArabic(text: string, options: TransliterateArabicOptions = {}): string {
