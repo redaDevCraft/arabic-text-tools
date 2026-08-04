@@ -1,9 +1,10 @@
 # arabic-text-tools
 
+
 - [العربية](#العربية)
 - [English](#english)
 
-## العربية
+# العربية
 
 [![npm version](https://img.shields.io/npm/v/arabic-text-tools)](https://www.npmjs.com/package/arabic-text-tools)
 [![CI](https://github.com/redaDevCraft/arabic-text-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/redaDevCraft/arabic-text-tools/actions/workflows/ci.yml)
@@ -68,8 +69,6 @@ npm run build
 
 ### الترخيص
 MIT — راجع [LICENSE](./LICENSE).
-
----
 
 ## English
 
@@ -136,3 +135,7 @@ Use conventional commits and release from `main` after CI passes.
 
 ### License
 MIT — see [LICENSE](./LICENSE).
+
+---
+
+#
