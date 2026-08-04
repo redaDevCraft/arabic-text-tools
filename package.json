@@ -1,6 +1,6 @@
 {
   "name": "arabic-text-tools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dependency-light Arabic text normalization and developer utilities for TypeScript.",
   "license": "MIT",
   "type": "module",
@@ -12,7 +12,13 @@
     "url": "https://github.com/redaDevCraft/arabic-text-tools/issues"
   },
   "homepage": "https://github.com/redaDevCraft/arabic-text-tools#readme",
-  "keywords": ["arabic", "rtl", "normalization", "transliteration", "text-processing"],
+  "keywords": [
+    "arabic",
+    "rtl",
+    "normalization",
+    "transliteration",
+    "text-processing"
+  ],
   "sideEffects": false,
   "engines": {
     "node": ">=20"
@@ -30,7 +36,11 @@
       "require": "./dist/cjs/index.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs && npm run build:types",
     "build:esm": "tsup src/index.ts --format esm --dts --out-dir dist/esm",
